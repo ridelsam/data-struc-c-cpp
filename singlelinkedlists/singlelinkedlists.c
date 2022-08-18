@@ -7,13 +7,12 @@ struct node {
     struct node *link;
 };
 
-/*
-void count_of_nodes(struct node *head);
-*/
 
 void add_at_end(struct node *head, int data);
 void add_at_beg(struct node **head, int data);
 void add_at_pos(struct node *head, int data, int pos);
+struct node* del_first(struct node *head);
+void del_last(struct node *head);
 
 int main(){
 
@@ -28,14 +27,6 @@ int main(){
     add_at_end(head, 67);
 
     
-    
-    /*
-    //adding data at the beginning of the list
-    int data = 99;
-
-    add_at_beg(&head, data);
-    ptr = head;
-    */
 
     //insering node at a certain position
     int data = 50, pos = 3;
@@ -44,44 +35,31 @@ int main(){
     struct node *ptr = head;
 
 
+
     //print data 
+    printf("Original Linked list:   ");
     while(ptr != NULL)
     {
-        printf("%d ", ptr->data);
+        printf("%d  ", ptr->data);
         ptr = ptr->link;
 
     }
 
-    /*
-    //traversing the single linked list
-    count_of_nodes(head);
-    */
+    del_last(head);
+    ptr=head;
 
+    //list after node deletion
+    printf("\nlist after deletion:    ");
+    while(ptr != NULL)
+    {
+        printf("%d  ", ptr->data);
+        ptr = ptr->link;
 
+    }
 
     return 0;
 
 }
-
-/*
-void count_of_nodes(struct node *head){
-
-    int count = 0;
-    if (head == NULL)
-        printf("Linked List is empty");
-    
-    struct node *ptr = NULL;
-    ptr = head;
-
-    while(ptr != NULL){
-        count ++;
-        ptr = ptr->link;
-    }
-
-    printf("%d", count);
-
-}
-*/
 
 
 
@@ -125,5 +103,42 @@ void add_at_pos(struct node *head, int data, int pos){
 
     ptr2->link = ptr->link;
     ptr->link = ptr2;
+
+}
+
+struct node* del_first(struct node *head){
+
+    if(head == NULL)
+        printf("List is already empty!");
+    else
+    {
+        struct node *temp = head;
+        head = head->link;
+        free(temp);
+    }
+
+    return head;
+
+}
+
+void del_last(struct node *head){
+    if(head == NULL)
+        printf("List is already empty!");
+    else if(head->link == NULL)
+    {
+        free(head);
+        head = NULL;
+    }
+    else 
+    {
+        struct node *temp = head;
+        while(temp->link->link != NULL)
+        {
+            temp = temp->link;
+        }
+        free(temp->link);
+        temp->link = NULL;
+    }
+
 
 }
