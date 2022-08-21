@@ -17,5 +17,6 @@ struct node* createList(struct node* head);
 struct node* delFirst(struct node* head);
 struct node* delLast(struct node* head);
 struct node* delInter(struct node* head, int pos);
+struct node* reverse(struct node* head);
 
 #endif

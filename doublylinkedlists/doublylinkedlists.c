@@ -15,14 +15,15 @@ int main(){
     head = addToEmpty(head, 34);
     head = addAtEnd(head, 45);
     head = addAtEnd(head, 9);
+    head = addAtEnd(head, 500);
 
 
-    printf("Before Deletion: \n");
+    printf("Original List: \n");
     print(head);
 
 
-    head = delInter(head, 2);
-    printf("After Deletion: \n");
+    head = reverse(head);
+    printf("Reversed List: \n");
     print(head);
 
   
