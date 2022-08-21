@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include "doubleLLfunc.h"
 
+void print (struct node* head)
+{
+    struct node* ptr = head;
+     while(ptr != NULL)
+    {
+        printf("%d ", ptr->data);
+        ptr = ptr->next;
+    }
+    printf("\n");
+
+}
+
 struct node* addToEmpty(struct node* head, int data)
 {
     struct node* temp = malloc(sizeof(struct node));
@@ -132,4 +144,58 @@ struct node* createList(struct node* head)
     }
 
     return head; 
+}
+
+struct node* delFirst(struct node* head)
+{
+
+    head = head->next;
+    free(head->prev);
+    head->prev = NULL;
+    return head;
+}
+
+struct node* delLast(struct node* head)
+{
+    struct node* temp = head;
+    struct node* temp2;
+    while(temp->next != NULL)
+        temp = temp->next;
+    temp2 = temp->prev;
+    temp2->next = NULL;
+    free(temp);
+    return head;
+}
+
+struct node* delInter(struct node* head, int pos)
+{
+    struct node* temp = head;
+    struct node* temp2 = NULL;
+    if (pos == 1)
+    {
+        head = delFirst(head);
+        return head;
+    }
+
+    while(pos > 1)
+    {
+        temp = temp->next;
+        pos--;
+    }
+
+    if(temp->next == NULL)
+    {
+        head = delLast(head);
+    }
+    else 
+    {
+        temp2 = temp->prev;
+        temp2->next = temp->next;
+        temp->next->prev = temp2;
+        free(temp);
+        temp = NULL;
+    }
+
+    return head;
+
 }
