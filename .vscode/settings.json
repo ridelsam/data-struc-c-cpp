@@ -3,6 +3,7 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "doublellfunc.h": "c"
+        "doublellfunc.h": "c",
+        "circularsinglellfunc.h": "c"
     }
 }
