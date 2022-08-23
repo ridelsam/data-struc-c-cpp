@@ -4,6 +4,7 @@
         "string": "c",
         "string_view": "c",
         "doublellfunc.h": "c",
-        "circularsinglellfunc.h": "c"
+        "circularsinglellfunc.h": "c",
+        "sstream": "c"
     }
 }
