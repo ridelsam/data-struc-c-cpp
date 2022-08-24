@@ -15,6 +15,7 @@ void del_pos(struct node **head, int pos);
 struct node* del_first(struct node *head);
 struct node* del_list(struct node *head);
 struct node* reverse(struct node *head);
+struct node* insert(struct node *head, int data);
 
 
 #endif

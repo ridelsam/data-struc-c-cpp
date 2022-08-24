@@ -142,3 +142,28 @@ struct node* reverse(struct node *head){
     return head;
 
 }
+
+struct node* insert(struct node *head, int data)
+{
+    struct node* temp;
+    struct node*newP = malloc(sizeof(struct node));
+    newP->data = data;
+    newP->link = NULL;
+
+    int key = data;
+    if(head == NULL || key < head->data)
+    {
+        newP->link = head;
+        head = newP;
+    }else
+    {
+        temp = head;
+        while((temp->link != NULL) && (temp->link->data < key))
+        {
+            temp = temp->link;
+        }
+        newP->link = temp->link;
+        temp->link = newP;
+    }
+    return head;
+}

@@ -14,9 +14,9 @@ int main(){
     head->data = 45;
     head->link = NULL;
   
-    add_at_end(head, 98);
-    add_at_end(head, 3);
-    add_at_end(head, 67);
+    add_at_end(head, 50);
+    add_at_end(head, 88);
+    add_at_end(head, 90);
 
     struct node *ptr = head;
 
@@ -29,11 +29,11 @@ int main(){
 
     }
 
-    head = reverse(head);
+    head = insert(head, 100);
     ptr = head;
 
-    //list after node deletion
-    printf("\nlist after reversal:    ");
+    //list after insertion
+    printf("\nlist after insertion:    ");
     while(ptr != NULL)
     {
         printf("%d  ", ptr->data);
