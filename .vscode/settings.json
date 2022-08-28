@@ -6,6 +6,8 @@
         "doublellfunc.h": "c",
         "circularsinglellfunc.h": "c",
         "sstream": "c",
-        "stack_array_func.h": "c"
+        "stack_array_func.h": "c",
+        "stack_linkedlistfunc.h": "c",
+        "stdlib.h": "c"
     }
 }
