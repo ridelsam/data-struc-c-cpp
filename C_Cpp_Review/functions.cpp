@@ -1,12 +1,16 @@
 #include<iostream>
 #include<stdio.h>
 using namespace std;
+
+
 void func(int x,int *y,int &z)
 {
     x++;
     (*y)++;
     z++;
 }
+
+
 int main()
 {
     int a=5,b=10,c=15;
