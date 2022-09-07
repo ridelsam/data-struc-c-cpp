@@ -7,8 +7,15 @@ class Rectangle//class rectangle
     private:
     int length;
     int breath;
-    
+
     public:
+
+    Rectangle ()//constructor of rectangle class ,it gets initalize as soon as class rectangle is declared in main 
+    {
+        length=0;
+        breath=05;
+    }
+
     Rectangle (int l,int b)//constructor of rectangle class ,it gets initalize as soon as class rectangle is declared in main 
     {
         length=l;
