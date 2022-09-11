@@ -57,7 +57,7 @@ int RBinarySearch(struct Array arr, int value, int l, int h)
 int main()
 {
     struct Array arr = {{1, 2, 3, 4, 5, 6, 7}, 10, 7};
-    cout << RBinarySearch(arr, 6, 0, arr.length - 1) << endl;
+    cout << BinarySearch(arr, 1) << endl;
     Display(arr);
     return 0;
 }
