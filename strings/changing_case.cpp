@@ -2,7 +2,7 @@
 
 int main()
 {
-    char name[] = "Never gonna give you up";
+    char name[] = "Never gonna give you up!";
     for (int i = 0; name[i] != '\0'; i++)
     {
         if (name[i] >= 65 && name[i] <= 90) // if chararcter is uppercase
