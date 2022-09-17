@@ -80,13 +80,38 @@ int Rsum(struct Node *p) // recursive sum of data of nodes
     return 0;
 }
 
+int Max(struct Node *p)
+{
+    int max = INT32_MIN;
+    while (p != NULL)
+    {
+        if (max < p->data)
+            max = p->data;
+        p = p->next;
+    }
+    return max;
+}
+
+int RMax(struct Node *p)
+{
+    int x = 0;
+    if (p == 0)
+        return INT32_MIN;
+    else
+    {
+        x = RMax(p->next);
+        if (x > p->data)
+            return x;
+        else
+            return p->data;
+    }
+}
+
 int main()
 {
-    int A[] = {4, 5, 8, 9, 7, 1, 9, 4, 7};
-    create(A, 9);
-    count();
-    cout << "count is : " << Rcount(first) << endl;
-    sum();
-    cout << "sum  is : " << Rsum(first) << endl;
+    int A[] = {4, 5, 78, 8, 94, 7222};
+    create(A, 6);
+    cout << RMax(first);
+
     return 0;
 }
