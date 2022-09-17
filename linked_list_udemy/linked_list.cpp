@@ -6,13 +6,11 @@ using namespace std;
 
 int main()
 {
-    int A[]={4,5,8,9,7};
+    int A[]={4,7,9,12,18};
     create(A,5);
-    cout<< "Before insert: "<<endl;
     Display();
-    insert(2,78);
-
-    cout<< "\nAfter insert: "<<endl;
+    cout<<endl;
+    S_Insert(first,8);
     Display();
 
     return 0;

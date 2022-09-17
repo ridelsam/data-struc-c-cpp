@@ -174,8 +174,7 @@ void insert(int pos, int value)
     }
     else if (pos > 0)
     {
-        for (int i = 0; i < pos - 1 && p; i++) // as it go to next node after one loop  and the node starts from 0
-                                               // where as position starts from 1
+        for (int i = 0; i < pos - 1 && p; i++) // as it go to next node after one loop  and the node starts from 0 
         {
             p = p->next;
         }
@@ -183,4 +182,35 @@ void insert(int pos, int value)
         t->next = p->next;
         p->next = t;
     }
+}
+
+void S_Insert(struct Node *p,int value)
+{
+    struct Node *q;
+    struct Node *t;
+    t=new Node;
+    t->data=value;
+    t->next=NULL;
+
+    if(first==NULL)
+        first=t;
+    else
+    {
+        while (p && p->data<value)
+        {
+            q=p;
+            p=p->next;
+        }
+        if(p==first)
+        {
+            t->next=first;
+            first=t;
+        }
+        else{
+            q->next=t;
+            t->next=p;
+        }
+        
+    }
+
 }
