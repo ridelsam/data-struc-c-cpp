@@ -20,6 +20,11 @@ int RMax(struct Node * p);
 struct Node *Linear_Search(struct Node *p,int key);
 struct Node *RLinear_Search(struct Node *p,int key);
 struct Node *ILinear_Search(struct Node *p,int key);
+void insert(int pos ,int value);
+void count();
+int Rcount(struct Node *p);
+void sum();
+int Rsum(struct Node *p);
 
 
 #endif

@@ -6,121 +6,181 @@ using namespace std;
 
 #include "linked_list_func.h"
 
-
-
-void create(int A[],int n)
+void create(int A[], int n)
 {
     int i;
     struct Node *last, *t;
-    first=new Node;
-    first->data=A[0];
-    first->next=NULL;
-    last=first;//addreess is passed and now first is refferd as last
+    first = new Node;
+    first->data = A[0];
+    first->next = NULL;
+    last = first; // addreess is passed and now first is refferd as last
 
-    for(int i=1;i<n;i++)
+    for (int i = 1; i < n; i++)
     {
-        t=new Node;
-        t->data=A[i];
-        t->next=NULL;
-        last->next=t;//putting address of current node in the next of last node 
-        last=t;//assigning current node as last node
+        t = new Node;
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t; // putting address of current node in the next of last node
+        last = t;       // assigning current node as last node
     }
 }
 
 void Display()
 {
     struct Node *p;
-    p=first;
-    while(p!=NULL)
+    p = first;
+    while (p != NULL)
     {
-        cout<<p->data<<endl;
-        p=p->next;
+        cout << p->data << " ";
+        p = p->next;
     }
 }
 
-void RDisplay(struct Node *p)// reverse display using recurssion
+void RDisplay(struct Node *p) // reverse display using recurssion
 {
-    if(p!=NULL)
+    if (p != NULL)
     {
         RDisplay(p->next);
-        cout<<p->data<<endl;
+        cout << p->data << " ";
     }
-    
 }
 
-int Max(struct Node * p)
+int Max(struct Node *p)
 {
-    int max=INT32_MIN;
-    while (p!=NULL)
+    int max = INT32_MIN;
+    while (p != NULL)
     {
-        if(max<p->data)
-            max=p->data;
-        p=p->next;
+        if (max < p->data)
+            max = p->data;
+        p = p->next;
     }
     return max;
-    
 }
 
-int RMax(struct Node * p)
+int RMax(struct Node *p)
 {
-    int x=0;
-    if(p==0)
+    int x = 0;
+    if (p == 0)
         return INT32_MIN;
     else
     {
-        x=RMax(p->next);
-        if(x>p->data)
+        x = RMax(p->next);
+        if (x > p->data)
             return x;
         else
             return p->data;
     }
-    
-    
 }
 
-struct Node *Linear_Search(struct Node *p,int key)
+void count() // counting of nodes
 {
-    while(p!=NULL)
+    int c = 0;
+    struct Node *p;
+    p = first;
+    while (p)
     {
-        if(p->data == key)
-            return p;
-        p=p->next;
+        c++;
+        p = p->next;
+    }
+    cout << " Count is " << c << endl;
+}
 
+int Rcount(struct Node *p) // recursive counting of nodes
+{
+    if (p)
+        return Rcount(p->next) + 1;
+    return 0;
+}
+
+void sum() // sum of data of nodes
+{
+    int s = 0;
+    struct Node *p;
+    p = first;
+    while (p)
+    {
+        s = s + p->data;
+        p = p->next;
+    }
+    cout << " sum is " << s << endl;
+}
+
+int Rsum(struct Node *p) // recursive sum of data of nodes
+{
+    if (p)
+        return p->data + Rsum(p->next);
+    return 0;
+}
+
+struct Node *Linear_Search(struct Node *p, int key)
+{
+    while (p != NULL)
+    {
+        if (p->data == key)
+            return p;
+        p = p->next;
     }
     return NULL;
 }
 
-struct Node *RLinear_Search(struct Node *p,int key)
+struct Node *RLinear_Search(struct Node *p, int key)
 {
-    if(p==NULL)
+    if (p == NULL)
         return NULL;
-    else if(p->data == key)
+    else if (p->data == key)
         return p;
     else
-        return RLinear_Search(p->next,key);
-
+        return RLinear_Search(p->next, key);
 }
 
-struct Node *ILinear_Search(struct Node *p,int key)
+struct Node *ILinear_Search(struct Node *p, int key)
 {
     struct Node *q;
-    while(p!=NULL)
+    while (p != NULL)
     {
-        if(p->data == key)
+        if (p->data == key)
         {
-            if(p==first)//  very  important as in case if the first element is same to key there
-                        // wont be any value to q 
+            if (p == first) //  very  important as in case if the first element is same to key there
+                            // wont be any value to q
                 return p;
             else
             {
-            q->next=p->next;
-            p->next=first;
-            first=p;
+                q->next = p->next;
+                p->next = first;
+                first = p;
             }
             return p;
         }
-        q=p;
-        p=p->next;
+        q = p;
+        p = p->next;
     }
     return NULL;
+}
+
+void insert(int pos, int value)
+{
+    if (pos < 0 || pos > Rcount(first))
+        return;
+
+    struct Node *p;
+    struct Node *t;
+    p = first;
+    t = new Node;
+    if (pos == 0)
+    {
+        t->data = value;
+        t->next = first;
+        first = t;
+    }
+    else if (pos > 0)
+    {
+        for (int i = 0; i < pos - 1 && p; i++) // as it go to next node after one loop  and the node starts from 0
+                                               // where as position starts from 1
+        {
+            p = p->next;
+        }
+        t->data = value;
+        t->next = p->next;
+        p->next = t;
+    }
 }

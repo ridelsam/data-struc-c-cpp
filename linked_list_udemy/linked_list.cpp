@@ -6,14 +6,14 @@ using namespace std;
 
 int main()
 {
-    int A[] = {4, 5, 8, 9, 7};
-    create(A, 5);
-    struct Node *temp;
-    temp = ILinear_Search(first, 80);
-    if (temp)
-        cout << "Key found  " << temp->data << endl;
-    else
-        cout << "Key not found" << endl;
+    int A[]={4,5,8,9,7};
+    create(A,5);
+    cout<< "Before insert: "<<endl;
     Display();
+    insert(2,78);
+
+    cout<< "\nAfter insert: "<<endl;
+    Display();
+
     return 0;
 }
