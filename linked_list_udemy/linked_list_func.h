@@ -25,6 +25,7 @@ void count();
 int Rcount(struct Node *p);
 void sum();
 int Rsum(struct Node *p);
+int Delete(struct Node *p,int index);
 
 
 #endif

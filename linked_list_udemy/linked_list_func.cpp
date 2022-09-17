@@ -174,7 +174,7 @@ void insert(int pos, int value)
     }
     else if (pos > 0)
     {
-        for (int i = 0; i < pos - 1 && p; i++) // as it go to next node after one loop  and the node starts from 0 
+        for (int i = 0; i < pos - 1 && p; i++) // as it go to next node after one loop  and the node starts from 0
         {
             p = p->next;
         }
@@ -184,33 +184,58 @@ void insert(int pos, int value)
     }
 }
 
-void S_Insert(struct Node *p,int value)
+void S_Insert(struct Node *p, int value)
 {
     struct Node *q;
     struct Node *t;
-    t=new Node;
-    t->data=value;
-    t->next=NULL;
+    t = new Node;
+    t->data = value;
+    t->next = NULL;
 
-    if(first==NULL)
-        first=t;
+    if (first == NULL)
+        first = t;
     else
     {
-        while (p && p->data<value)
+        while (p && p->data < value)
         {
-            q=p;
-            p=p->next;
+            q = p;
+            p = p->next;
         }
-        if(p==first)
+        if (p == first)
         {
-            t->next=first;
-            first=t;
+            t->next = first;
+            first = t;
         }
-        else{
-            q->next=t;
-            t->next=p;
+        else
+        {
+            q->next = t;
+            t->next = p;
         }
-        
+    }
+}
+
+int Delete(struct Node *p, int index)
+{
+    struct Node *q = NULL;
+    int x = -1; // to store data of deleted node
+    if (index < 0 || index > Rcount(p))
+        return -1;
+    if (index == 1)
+    {
+        x = first->data;
+        first = first->next;
+    }
+    else
+    {
+        for (int i = 0; i < index - 1; i++)
+        {
+            q = p;
+            p = p->next;
+        }
+        x = p->data;
+        q->next = p->next;
     }
 
+    delete p;
+    return x;
 }
