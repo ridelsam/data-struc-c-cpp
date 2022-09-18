@@ -375,3 +375,17 @@ void Merge(struct Node *p, struct Node *q)
     else
         last->next = q;
 }
+
+bool isloop(struct Node *f)
+{
+    struct Node *p,*q;
+    p=q=f;
+    do
+    {
+        p=p->next;
+        q=q->next;
+        q=q->next!=NULL?q->next:NULL;
+    } while (p && q && p!=q);
+    
+    return p==q?true:false;
+}

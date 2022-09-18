@@ -6,17 +6,19 @@ using namespace std;
 
 int main()
 {
-    int A[] = {4, 7, 17, 21, 25, 30};
-    int B[] = {5, 15, 19, 23, 27, 34, 37};
-    create1(A, 6);
-    cout << "First: " << endl;
-    Display(first);
-    create2(B, 7);
-    cout << "\nSecond: " << endl;
-    Display(second);
-    cout << "\nThird: " << endl;
-    Merge(first, second);
-    Display(third);
+    struct Node *p,*q;
+    int A[]={4,7,19,12,15,18};
+    create1(A,6);   
+    p=first->next->next;
+    q=first->next->next->next->next->next;
+    q->next=p;
+    if(isloop(first))
+    {
+        cout<<"there\'s  a loop";
+    }
+    else
+        cout<<"Theres not  a loop";
+   
 
     return 0;
 }

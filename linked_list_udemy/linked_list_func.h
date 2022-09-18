@@ -33,6 +33,7 @@ void reverse2(struct Node *p);
 void reverse3(struct Node *q,struct Node *p);
 void Concatenate(struct Node *p, struct Node *q);
 void Merge(struct Node *p, struct Node *q);
+bool isloop(struct Node *f);
 
 
 #endif
