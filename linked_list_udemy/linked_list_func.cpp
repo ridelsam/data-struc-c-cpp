@@ -6,42 +6,50 @@ using namespace std;
 
 #include "linked_list_func.h"
 
-void create(int A[], int n)
+void create1(int A[],int n)
 {
     int i;
     struct Node *last, *t;
-    first = new Node;
-    first->data = A[0];
-    first->next = NULL;
-    last = first; // addreess is passed and now first is refferd as last
+    first=new Node;
+    first->data=A[0];
+    first->next=NULL;
+    last=first;//addreess is passed and now first is refferd as last
 
-    for (int i = 1; i < n; i++)
+    for(int i=1;i<n;i++)
     {
-        t = new Node;
-        t->data = A[i];
-        t->next = NULL;
-        last->next = t; // putting address of current node in the next of last node
-        last = t;       // assigning current node as last node
+        t=new Node;
+        t->data=A[i];
+        t->next=NULL;
+        last->next=t;//putting address of current node in the next of last node 
+        last=t;//assigning current node as last node
+    }
+}
+void create2(int A[],int n)
+{
+    int i;
+    struct Node *last, *t;
+    second=new Node;
+    second->data=A[0];
+    second->next=NULL;
+    last=second;//addreess is passed and now first is refferd as last
+
+    for(int i=1;i<n;i++)
+    {
+        t=new Node;
+        t->data=A[i];
+        t->next=NULL;
+        last->next=t;//putting address of current node in the next of last node 
+        last=t;//assigning current node as last node
     }
 }
 
-void Display()
+void Display(struct Node *p)
 {
-    struct Node *p;
-    p = first;
-    while (p != NULL)
-    {
-        cout << p->data << " ";
-        p = p->next;
-    }
-}
 
-void RDisplay(struct Node *p) // reverse display using recurssion
-{
-    if (p != NULL)
+    while(p!=NULL)
     {
-        RDisplay(p->next);
-        cout << p->data << " ";
+        cout<<p->data<<" ";
+        p=p->next;
     }
 }
 
@@ -242,13 +250,13 @@ int Delete(struct Node *p, int index)
 
 bool isSorted(struct Node *p)
 {
-    int n=INT32_MIN;
-    while(p!=NULL)
+    int n = INT32_MIN;
+    while (p != NULL)
     {
-        if(p->data<n)
+        if (p->data < n)
             return false;
-        n=p->data;
-        p=p->next;
+        n = p->data;
+        p = p->next;
     }
     return true;
 }
@@ -256,70 +264,114 @@ bool isSorted(struct Node *p)
 void Remove_Duplicate(struct Node *p)
 {
     struct Node *q;
-    q=new Node;
-    q=p->next;
-    while(q!=NULL)
+    q = new Node;
+    q = p->next;
+    while (q != NULL)
     {
-        if(p->data!=q->data)
+        if (p->data != q->data)
         {
-            p=q;
-            q=q->next;
+            p = q;
+            q = q->next;
         }
         else
         {
-            p->next=q->next;
+            p->next = q->next;
             delete q;
-            q=p->next;
+            q = p->next;
         }
-    } 
-
+    }
 }
 
-void reverse1(struct Node *p)//Reverse using (Auxiliary)array
+void reverse1(struct Node *p) // Reverse using (Auxiliary)array
 {
-    int *A,i=0;
+    int *A, i = 0;
     struct Node *q;
-    A=new int[Rcount(p)];
-    q=p;
-    while(q!=NULL)
+    A = new int[Rcount(p)];
+    q = p;
+    while (q != NULL)
     {
-        A[i]=q->data;
-        q=q->next;
+        A[i] = q->data;
+        q = q->next;
         i++;
     }
-    q=p;
+    q = p;
     i--;
-    while(q!=NULL)
+    while (q != NULL)
     {
-        q->data=A[i];
-        q=q->next;
+        q->data = A[i];
+        q = q->next;
         i--;
     }
-
 }
 
-void reverse2(struct Node *p)//reversing by reversing the links
+void reverse2(struct Node *p) // reversing by reversing the links
 {
-    struct Node *q=NULL,*r=NULL;
-    while(p!=NULL)
+    struct Node *q = NULL, *r = NULL;
+    while (p != NULL)
     {
-        r=q;
-        q=p;
-        p=p->next;
-        q->next=r;
+        r = q;
+        q = p;
+        p = p->next;
+        q->next = r;
     }
-    first=q;//make first the q as links are reveresed at q is at the last node after loop
+    first = q; // make first the q as links are reveresed at q is at the last node after loop
 }
 
-void reverse3(struct Node *q,struct Node *p)
+void reverse3(struct Node *q, struct Node *p)
 {
-    if(p!=NULL)
+    if (p != NULL)
     {
-        reverse3(p,p->next);
-        p->next=q;
+        reverse3(p, p->next);
+        p->next = q;
     }
     else
     {
-        first=q;
+        first = q;
     }
+}
+
+void Concatenate(struct Node *p, struct Node *q)
+{
+    third = p;
+    while (p->next)
+        p = p->next;
+    p->next = q;
+}
+
+void Merge(struct Node *p, struct Node *q)
+{
+    struct Node *last;
+    if (p->data < q->data)
+    {
+        third = last = p;
+        p = p->next;
+        third->next = NULL;
+    }
+    else
+    {
+        third = last = q;
+        q = q->next;
+        third->next = NULL;
+    }
+    while (p && q)
+    {
+        if (p->data < q->data)
+        {
+            last->next = p;
+            last = p;
+            p = p->next;
+            last->next = NULL;
+        }
+        else
+        {
+            last->next = q;
+            last = q;
+            q = q->next;
+            last->next = NULL;
+        }
+    }
+    if (p)
+        last->next = p;
+    else
+        last->next = q;
 }

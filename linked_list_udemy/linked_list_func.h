@@ -9,12 +9,12 @@ struct Node
 {
     int data;
     struct Node *next;
+}*first=NULL,*second=NULL,*third=NULL;
 
-} *first = NULL;
-
-void create(int A[],int n);
+void create1(int A[],int n);
+void create2(int A[],int n);
 void Display();
-void RDisplay(struct Node *p);
+void Display(struct Node *p);
 int Max(struct Node * p);
 int RMax(struct Node * p);
 struct Node *Linear_Search(struct Node *p,int key);
@@ -31,7 +31,8 @@ void Remove_Duplicate(struct Node *p);
 void reverse1(struct Node *p);
 void reverse2(struct Node *p);
 void reverse3(struct Node *q,struct Node *p);
-
+void Concatenate(struct Node *p, struct Node *q);
+void Merge(struct Node *p, struct Node *q);
 
 
 #endif
