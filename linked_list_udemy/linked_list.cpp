@@ -6,11 +6,9 @@ using namespace std;
 
 int main()
 {
-    int A[]={4,7,9,12,18};
-    create(A,5);
-    Display();
-    cout<<"\nDeleted : "<<Delete(first,3)<<endl;
-    Display();
+    int A[] = {4, 7, 9, 12, 18};
+    create(A, 5);
+    cout << "Sorted : " << isSorted(first) << endl;
 
     return 0;
 }

@@ -239,3 +239,16 @@ int Delete(struct Node *p, int index)
     delete p;
     return x;
 }
+
+bool isSorted(struct Node *p)
+{
+    int n=INT32_MIN;
+    while(p!=NULL)
+    {
+        if(p->data<n)
+            return false;
+        n=p->data;
+        p=p->next;
+    }
+    return true;
+}

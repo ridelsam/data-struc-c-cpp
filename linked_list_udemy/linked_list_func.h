@@ -3,7 +3,7 @@
 
 #include<iostream>
 #include<stdlib.h>
-using namespace std;
+
 
 struct Node
 {
@@ -26,6 +26,7 @@ int Rcount(struct Node *p);
 void sum();
 int Rsum(struct Node *p);
 int Delete(struct Node *p,int index);
+bool isSorted(struct Node *p);
 
 
 #endif
