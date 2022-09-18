@@ -6,14 +6,14 @@ using namespace std;
 
 int main()
 {
-    int A[]={4,7,7,7,12,12,15,18};
-    create(A,8);
-    cout<<"before\n";
+    int A[]={4,7,19,12,15,18};
+    create(A,6);
+    cout<<"Before"<<endl;
     Display();
-    cout<<"\nAfter\n";
-    Remove_Duplicate(first);
-    Display();
-    
+    reverse3(NULL,first);
+    cout<<"\nAfter"<<endl;
+    Display();    
+
     
 
     return 0;

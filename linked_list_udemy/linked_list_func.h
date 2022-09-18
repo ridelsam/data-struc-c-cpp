@@ -28,5 +28,10 @@ int Rsum(struct Node *p);
 int Delete(struct Node *p,int index);
 bool isSorted(struct Node *p);
 void Remove_Duplicate(struct Node *p);
+void reverse1(struct Node *p);
+void reverse2(struct Node *p);
+void reverse3(struct Node *q,struct Node *p);
+
+
 
 #endif

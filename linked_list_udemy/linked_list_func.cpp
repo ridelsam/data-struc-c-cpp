@@ -274,3 +274,52 @@ void Remove_Duplicate(struct Node *p)
     } 
 
 }
+
+void reverse1(struct Node *p)//Reverse using (Auxiliary)array
+{
+    int *A,i=0;
+    struct Node *q;
+    A=new int[Rcount(p)];
+    q=p;
+    while(q!=NULL)
+    {
+        A[i]=q->data;
+        q=q->next;
+        i++;
+    }
+    q=p;
+    i--;
+    while(q!=NULL)
+    {
+        q->data=A[i];
+        q=q->next;
+        i--;
+    }
+
+}
+
+void reverse2(struct Node *p)//reversing by reversing the links
+{
+    struct Node *q=NULL,*r=NULL;
+    while(p!=NULL)
+    {
+        r=q;
+        q=p;
+        p=p->next;
+        q->next=r;
+    }
+    first=q;//make first the q as links are reveresed at q is at the last node after loop
+}
+
+void reverse3(struct Node *q,struct Node *p)
+{
+    if(p!=NULL)
+    {
+        reverse3(p,p->next);
+        p->next=q;
+    }
+    else
+    {
+        first=q;
+    }
+}
