@@ -27,6 +27,6 @@ void sum();
 int Rsum(struct Node *p);
 int Delete(struct Node *p,int index);
 bool isSorted(struct Node *p);
-
+void Remove_Duplicate(struct Node *p);
 
 #endif

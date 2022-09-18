@@ -6,9 +6,15 @@ using namespace std;
 
 int main()
 {
-    int A[] = {4, 7, 9, 12, 18};
-    create(A, 5);
-    cout << "Sorted : " << isSorted(first) << endl;
+    int A[]={4,7,7,7,12,12,15,18};
+    create(A,8);
+    cout<<"before\n";
+    Display();
+    cout<<"\nAfter\n";
+    Remove_Duplicate(first);
+    Display();
+    
+    
 
     return 0;
 }

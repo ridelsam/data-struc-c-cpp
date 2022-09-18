@@ -252,3 +252,25 @@ bool isSorted(struct Node *p)
     }
     return true;
 }
+
+void Remove_Duplicate(struct Node *p)
+{
+    struct Node *q;
+    q=new Node;
+    q=p->next;
+    while(q!=NULL)
+    {
+        if(p->data!=q->data)
+        {
+            p=q;
+            q=q->next;
+        }
+        else
+        {
+            p->next=q->next;
+            delete q;
+            q=p->next;
+        }
+    } 
+
+}
