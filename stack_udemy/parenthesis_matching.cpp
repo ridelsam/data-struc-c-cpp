@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include <string.h>
+#include <cstring>
 using namespace std;
 struct Stack
 {
@@ -11,7 +11,8 @@ struct Stack
 
 void create(Stack *st, char *s)
 {
-    st->size = strlen(s);
+    int x = strlen(s);
+    st->size = x;
     st->top = -1;
     st->S = new char[st->size];
 }
@@ -68,13 +69,17 @@ string isBalanced(char *s)
 
     for (i = 0; s[i] != '\0'; i++)
     {
-        if (s[i] == '(')
-            push(&st, '(');
-        else if (s[i] == ')')
+        if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+            push(&st, s[i]);
+        else if (s[i] == ')' || s[i] == ']' || s[i] == '}')
         {
             if (isEmpty(st))
                 return 0;
-            pop(&st);
+            char x = pop(&st);
+            if ((s[i] - x) <= 2) // working with ascii code
+                continue;
+            else
+                return 0;
         }
     }
     if (isEmpty(st))
@@ -84,7 +89,7 @@ string isBalanced(char *s)
 }
 int main()
 {
-    char s[] = "((Hello))+(mom";
+    char s[] = "{([bruhhh])}";
     cout << isBalanced(s);
 
     return 0;
