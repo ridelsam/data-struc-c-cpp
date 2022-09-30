@@ -1,6 +1,9 @@
 #include <iostream>
 
 using namespace std;
+
+#ifndef tree_func_h
+#define tree_func_h
  
 
 class Node{
@@ -25,6 +28,25 @@ public:
     Node* dequeue();
 };
 
+template<class T>
+class Stack{
+private:
+    T size;
+    T top;
+    int* S;
+public:
+    Stack() { top = NULL; }
+    Stack(T size);
+    ~Stack();
+    void push(T x);
+    T pop();
+    T peek(int index);
+    T isFull();
+    T isEmpty();
+    void display();
+    T stackTop();
+};
+
 class Tree{
 private:
     Node* root;
@@ -43,4 +65,13 @@ public:
     int Height(){ return Height(root); }  // Passing Private Parameter in Constructor
     int Height(Node* p);
     Node* getRoot(){ return root; }
+    void iterativePreorder(Node* p);
+    void iterativePreorder() { iterativePreorder(root); }
+    void iterativeInorder(Node* p);
+    void iterativeInorder() { iterativeInorder(root); }
+    void iterativePostorder(Node* p);
+    void iterativePostorder() { iterativePostorder(root); }
 };
+
+
+#endif
