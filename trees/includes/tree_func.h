@@ -1,3 +1,5 @@
+#include <queue>
+#include <stack>
 #include <iostream>
 
 using namespace std;
@@ -13,58 +15,25 @@ public:
     Node* rchild;
 };
  
-class Queue{
-private:
-    int size;
-    int front;
-    int rear;
-    Node** Q;  // [Node*]*: Pointer to [Pointer to Node]
-public:
-    Queue(int size);
-    ~Queue();
-    bool isFull();
-    bool isEmpty();
-    void enqueue(Node* x);
-    Node* dequeue();
-};
 
-template<class T>
-class Stack{
-private:
-    T size;
-    T top;
-    int* S;
-public:
-    Stack() { top = NULL; }
-    Stack(T size);
-    ~Stack();
-    void push(T x);
-    T pop();
-    T peek(int index);
-    T isFull();
-    T isEmpty();
-    void display();
-    T stackTop();
-};
 
 class Tree{
 private:
     Node* root;
 public:
-    Tree() { root = nullptr; }
+    Tree();
     ~Tree();
     void CreateTree();
-    void Preorder(){ Preorder(root); }  // Passing Private Parameter in Constructor
     void Preorder(Node* p);
-    void Postorder(){ Postorder(root); }  // Passing Private Parameter in Constructor
-    void Postorder(Node* p);
-    void Inorder(){ Inorder(root); }
+    void Preorder() { Preorder(root); }  // Passing Private Parameter in Constructor
     void Inorder(Node* p);
-    void Levelorder(){ Levelorder(root); }  // Passing Private Parameter in Constructor
+    void Inorder() { Inorder(root); }
+    void Postorder(Node* p);
+    void Postorder() { Postorder(root); }
     void Levelorder(Node* p);
-    int Height(){ return Height(root); }  // Passing Private Parameter in Constructor
+    void Levelorder() { Levelorder(root); }
     int Height(Node* p);
-    Node* getRoot(){ return root; }
+    int Height() { return Height(root); }
     void iterativePreorder(Node* p);
     void iterativePreorder() { iterativePreorder(root); }
     void iterativeInorder(Node* p);

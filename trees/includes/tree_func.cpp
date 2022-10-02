@@ -1,270 +1,132 @@
 #include <iostream>
 #include "tree_func.h"
+#include <queue>
+#include <stack>
 
 
-Queue::Queue(int size)
-{
-    this->size = size;
-    front = -1;
-    rear = -1;
-    Q = new Node *[size];
+
+
+Tree::Tree() {
+    root = nullptr;
 }
-
-Queue::~Queue()
-{
-    delete[] Q;
+ 
+Tree::~Tree() {
+    // TODO
 }
-
-bool Queue::isEmpty()
-{
-    if (front == rear)
-    {
-        return true;
-    }
-    return false;
-}
-
-bool Queue::isFull()
-{
-    if (rear == size - 1)
-    {
-        return true;
-    }
-    return false;
-}
-
-void Queue::enqueue(Node *x)
-{
-    if (isFull())
-    {
-        cout << "Queue Overflow" << endl;
-    }
-    else
-    {
-        rear++;
-        Q[rear] = x;
-    }
-}
-
-Node *Queue::dequeue()
-{
-    Node *x = nullptr;
-    if (isEmpty())
-    {
-        cout << "Queue Underflow" << endl;
-    }
-    else
-    {
-        front++;
-        x = Q[front];
-    }
-    return x;
-}
-
-template<class T>
-Stack<T>::Stack(T size) {
-    this->size = size;
-    top = -1;
-    S = new int[size];
-}
-
-template<class T> 
-Stack<T>::~Stack() {
-    delete[] S;
-}
-
-template<class T>  
-void Stack<T>::push(T x) {
-    if (isFull()){
-        cout << "Stack Overflow!" << endl;
-    } else {
-        top++;
-        S[top] = x;
-    }
-}
-
-template<class T> 
-T Stack<T>::pop() {
-    T x = 1;
-    if (isEmpty()){
-        cout << "Stack Underflow!" << endl;
-    } else {
-        x = S[top];
-        top--;
-    }
-    return x;
-}
-
-template<class T>  
-T Stack<T>::peek(int index) {
-    T x = -1;
-    if (top-index+1 < 0 || top-index+1 == size){
-        cout << "Invalid position!" << endl;
-    } else {
-        x = S[top-index+1];
-    }
-    return x;
-}
-
-template<class T>  
-T Stack<T>::isFull() {
-    if (top == size-1){
-        return 1;
-    }
-    return 0;
-}
-
-template<class T>  
-T Stack<T>::isEmpty() {
-    if (top == -1){
-        return 1;
-    }
-    return 0;
-}
-
-template<class T>  
-void Stack<T>::display() {
-    for (int i=top; i>=0; i--){
-        cout << S[i] << " | " << flush;
-    }
-    cout << endl;
-}
-
-template<class T>   
-T Stack<T>::stackTop() {
-    if (isEmpty()){
-        return -1;
-    }
-    return S[top];
-}
-
-void Tree::CreateTree()
-{
-    Node *p;
-    Node *t;
+ 
+void Tree::CreateTree() {
+    Node* p;
+    Node* t;
     int x;
-
-    Queue q(25);
+    queue<Node*> q;
+ 
     root = new Node;
-    cout << "Enter root value: " << flush;
+    cout << "Enter root data: " << flush;
     cin >> x;
     root->data = x;
     root->lchild = nullptr;
     root->rchild = nullptr;
-    q.enqueue(root);
-
-    while (!q.isEmpty())
-    {
-        p = q.dequeue();
-
-        cout << "Enter left child value of " << p->data << ": " << flush;
+    q.emplace(root);
+ 
+    while (! q.empty()){
+        p = q.front();
+        q.pop();
+ 
+        cout << "Enter left child data of " << p->data << ": " << flush;
         cin >> x;
-        if (x != -1)
-        {
+        if (x != -1){
             t = new Node;
             t->data = x;
             t->lchild = nullptr;
             t->rchild = nullptr;
             p->lchild = t;
-            q.enqueue(t);
+            q.emplace(t);
         }
-
-        cout << "Enter Right child value of " << p->data << ": " << flush;
+ 
+        cout << "Enter right child data of " << p->data << ": " << flush;
         cin >> x;
-        if (x != -1)
-        {
+        if (x != -1){
             t = new Node;
             t->data = x;
             t->lchild = nullptr;
             t->rchild = nullptr;
             p->rchild = t;
-            q.enqueue(t);
+            q.emplace(t);
         }
     }
 }
-
-void Tree::Preorder(Node *p)
-{
-    if (p)
-    {
+ 
+void Tree::Preorder(Node *p) {
+    if (p){
         cout << p->data << ", " << flush;
         Preorder(p->lchild);
         Preorder(p->rchild);
     }
 }
-
-void Tree::Inorder(Node *p)
-{
-    if (p)
-    {
+ 
+void Tree::Inorder(Node *p) {
+    if (p){
         Inorder(p->lchild);
         cout << p->data << ", " << flush;
         Inorder(p->rchild);
     }
 }
-
-void Tree::Postorder(Node *p)
-{
-    if (p)
-    {
+ 
+void Tree::Postorder(Node *p) {
+    if (p){
         Postorder(p->lchild);
         Postorder(p->rchild);
         cout << p->data << ", " << flush;
     }
 }
-
-void Tree::Levelorder(Node *p)
-{
-    Queue q(100);
-    cout << root->data << ", " << flush;
-    q.enqueue(root);
-
-    while (!q.isEmpty())
-    {
-        p = q.dequeue();
-        if (p->lchild)
-        {
+ 
+void Tree::Levelorder(Node *p) {
+    queue<Node*> q;
+    cout << p->data << ", " << flush;
+    q.emplace(p);
+ 
+    while (! q.empty()){
+        p = q.front();
+        q.pop();
+ 
+        if (p->lchild){
             cout << p->lchild->data << ", " << flush;
-            q.enqueue(p->lchild);
+            q.emplace(p->lchild);
         }
-        if (p->rchild)
-        {
+ 
+        if (p->rchild){
             cout << p->rchild->data << ", " << flush;
-            q.enqueue(p->rchild);
+            q.emplace(p->rchild);
         }
     }
 }
-
-int Tree::Height(Node *p)
-{
+ 
+int Tree::Height(Node *p) {
     int l = 0;
     int r = 0;
-    if (p == nullptr)
-    {
+    if (p == nullptr){
         return 0;
     }
-
+ 
     l = Height(p->lchild);
     r = Height(p->rchild);
-    if (l > r)
-    {
+ 
+    if (l > r){
         return l + 1;
-    }
-    else
-    {
+    } else {
         return r + 1;
     }
 }
-
+ 
 void Tree::iterativePreorder(Node *p) {
-    Stack<Node*> stk;
-    while (p != nullptr || ! stk.isEmpty()){
+    stack<Node*> stk;
+    while (p != nullptr || ! stk.empty()){
         if (p != nullptr){
             cout << p->data << ", " << flush;
-            stk.push(p);
+            stk.emplace(p);
             p = p->lchild;
         } else {
-            p = stk.stackTop();
+            p = stk.top();
             stk.pop();
             p = p->rchild;
         }
@@ -273,13 +135,13 @@ void Tree::iterativePreorder(Node *p) {
 }
  
 void Tree::iterativeInorder(Node *p) {
-    Stack<Node*> stk;
-    while (p != nullptr || ! stk.isEmpty()){
+    stack<Node*> stk;
+    while (p != nullptr || ! stk.empty()){
         if (p != nullptr){
-            stk.push(p);
+            stk.emplace(p);
             p = p->lchild;
         } else {
-            p = stk.stackTop();
+            p = stk.top();
             stk.pop();
             cout << p->data << ", " << flush;
             p = p->rchild;
@@ -289,17 +151,17 @@ void Tree::iterativeInorder(Node *p) {
 }
  
 void Tree::iterativePostorder(Node *p) {
-    Stack<long int> stk;
+    stack<long int> stk;
     long int temp;
-    while (p != nullptr || ! stk.isEmpty()){
+    while (p != nullptr || ! stk.empty()){
         if (p != nullptr){
-            stk.push((long int)p);
+            stk.emplace((long int)p);
             p = p->lchild;
         } else {
-            temp = stk.stackTop();
+            temp = stk.top();
             stk.pop();
             if (temp > 0){
-                stk.push(-temp);
+                stk.emplace(-temp);
                 p = ((Node*)temp)->rchild;
             } else {
                 cout << ((Node*)(-1 * temp))->data << ", " << flush;
@@ -310,3 +172,40 @@ void Tree::iterativePostorder(Node *p) {
     cout << endl;
 }
  
+ 
+int main() {
+ 
+    Tree bt;
+ 
+    bt.CreateTree();
+    cout << endl;
+ 
+    cout << "Preorder: " << flush;
+    bt.Preorder();
+    cout << endl;
+ 
+    cout << "Inorder: " << flush;
+    bt.Inorder();
+    cout << endl;
+ 
+    cout << "Postorder: " << flush;
+    bt.Postorder();
+    cout << endl;
+ 
+    cout << "Levelorder: " << flush;
+    bt.Levelorder();
+    cout << endl;
+ 
+    cout << "Height: " << bt.Height() << endl;
+ 
+    cout << "Iterative Preorder: " << flush;
+    bt.iterativePreorder();
+ 
+    cout << "Iterative Inorder: " << flush;
+    bt.iterativeInorder();
+ 
+    cout << "Iterative Postorder: " << flush;
+    bt.iterativePostorder();
+ 
+    return 0;
+}
