@@ -13,9 +13,15 @@ public:
     Node* lchild;
     int data;
     Node* rchild;
+    Node() {};
+    Node(int data);
 };
  
-
+Node::Node(int data) {
+    lchild = nullptr;
+    this->data = data;
+    rchild = nullptr;
+}
 
 class Tree{
 private:
@@ -40,6 +46,8 @@ public:
     void iterativeInorder() { iterativeInorder(root); }
     void iterativePostorder(Node* p);
     void iterativePostorder() { iterativePostorder(root); }
+    int searchInorder(int inArray[], int inStart, int inEnd, int data);
+    Node* generateFromTraversal(int inorder[], int preorder[], int inStart, int inEnd);
 };
 
 
