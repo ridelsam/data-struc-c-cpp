@@ -172,7 +172,7 @@ void Tree::iterativePostorder(Node *p) {
     cout << endl;
 }
  
-int searchInorder(int inArray[], int inStart, int inEnd, int data){
+int Tree::searchInorder(int inArray[], int inStart, int inEnd, int data){
     for (int i=inStart; i<=inEnd; i++){
         if (inArray[i] == data){
             return i;
