@@ -48,6 +48,12 @@ public:
     void iterativePostorder() { iterativePostorder(root); }
     int searchInorder(int inArray[], int inStart, int inEnd, int data);
     Node* generateFromTraversal(int inorder[], int preorder[], int inStart, int inEnd);
+    int Count(Node* p);
+    int Count(){ Count(root); }
+    int Sum(Node* p);
+    int Sum(){ Sum(root); }
+    int deg2NodeCount(Node* p);
+    int deg2NodeCount(){ deg2NodeCount(root); }
 };
 
 
