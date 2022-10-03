@@ -238,4 +238,56 @@ int Tree::deg2NodeCount(Node *p) {
     }
     return 0;
 }
+
+int Tree::leafNodeCount(Node *p) {
+    int x;
+    int y;
+    if (p != nullptr){
+        x = leafNodeCount(p->lchild);
+        y = leafNodeCount(p->rchild);
+        if (p->lchild == nullptr && p->rchild == nullptr){
+            return x + y + 1;
+        } else {
+            return x + y;
+        }
+    }
+    return 0;
+}
  
+int Tree::deg1ordeg2NodeCount(Node *p) {
+    int x;
+    int y;
+    if (p != nullptr){
+        x = deg1ordeg2NodeCount(p->lchild);
+        y = deg1ordeg2NodeCount(p->rchild);
+        if (p->lchild != nullptr || p->rchild != nullptr){
+            return x + y + 1;
+        } else {
+            return x + y;
+        }
+    }
+    return 0;
+}
+ 
+int Tree::deg1NodeCount(Node *p) {
+    int x;
+    int y;
+    if (p != nullptr){
+        x = deg1NodeCount(p->lchild);
+        y = deg1NodeCount(p->rchild);
+        if (p->lchild != nullptr ^ p->rchild != nullptr){
+            return x + y + 1;
+        } else {
+            return x + y;
+        }
+    }
+    return 0;
+}
+ 
+void Tree::DestroyTree(Node *p) {
+    if (p != nullptr){
+        DestroyTree(p->lchild);
+        DestroyTree(p->rchild);
+        delete p;
+    }
+} 

@@ -54,6 +54,10 @@ public:
     int Sum(){ Sum(root); }
     int deg2NodeCount(Node* p);
     int deg2NodeCount(){ deg2NodeCount(root); }
+    int leafNodeCount(Node* p);
+    int deg1ordeg2NodeCount(Node* p);
+    int deg1NodeCount(Node* p);
+    void DestroyTree(Node* p);
 };
 
 
