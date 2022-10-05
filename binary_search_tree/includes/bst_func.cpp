@@ -5,7 +5,7 @@
 using namespace std;
  
 
-void BST::Insert(int key) {
+void BST::iInsert(int key) {
  
     Node* t = root;
     Node* p;
@@ -54,7 +54,7 @@ void BST::Inorder(Node* p) {
     }
 }
  
-Node* BST::Search(int key) {
+Node* BST::iSearch(int key) {
     Node* t = root;
     while (t != nullptr){
         if (key == t->data){
@@ -66,4 +66,94 @@ Node* BST::Search(int key) {
         }
     }
     return nullptr;
+}
+ 
+Node* BST::rInsert(Node *p, int key) {
+    Node* t;
+    if (p == nullptr){
+        t = new Node;
+        t->data = key;
+        t->lchild = nullptr;
+        t->rchild = nullptr;
+        return t;
+    }
+ 
+    if (key < p->data){
+        p->lchild = rInsert(p->lchild, key);
+    } else if (key > p->data){
+        p->rchild = rInsert(p->rchild, key);
+    }
+    return p;  // key == p->data?
+}
+ 
+Node* BST::rSearch(Node *p, int key) {
+    if (p == nullptr){
+        return nullptr;
+    }
+ 
+    if (key == p->data){
+        return p;
+    } else if (key < p->data){
+        return rSearch(p->lchild, key);
+    } else {
+        return rSearch(p->rchild, key);
+    }
+}
+ 
+Node* BST::Delete(Node *p, int key) {
+    Node* q;
+ 
+    if (p == nullptr){
+        return nullptr;
+    }
+ 
+    if (p->lchild == nullptr && p->rchild == nullptr){
+        if (p == root){
+            root = nullptr;
+        }
+        delete p;
+        return nullptr;
+    }
+ 
+    if (key < p->data){
+        p->lchild = Delete(p->lchild, key);
+    } else if (key > p->data){
+        p->rchild = Delete(p->rchild, key);
+    } else {
+        if (Height(p->lchild) > Height(p->rchild)){
+            q = InPre(p->lchild);
+            p->data = q->data;
+            p->lchild = Delete(p->lchild, q->data);
+        } else {
+            q = InSucc(p->rchild);
+            p->data = q->data;
+            p->rchild = Delete(p->rchild, q->data);
+        }
+    }
+    return p;
+}
+ 
+int BST::Height(Node *p) {
+    int x;
+    int y;
+    if (p == nullptr){
+        return 0;
+    }
+    x = Height(p->lchild);
+    y = Height(p->rchild);
+    return x > y ? x + 1 : y + 1;
+}
+ 
+Node* BST::InPre(Node *p) {
+    while (p && p->rchild != nullptr){
+        p = p->rchild;
+    }
+    return p;
+}
+ 
+Node* BST::InSucc(Node *p) {
+    while (p && p->lchild != nullptr){
+        p = p->lchild;
+    }
+    return p;
 }

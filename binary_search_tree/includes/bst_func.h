@@ -19,9 +19,15 @@ private:
 public:
     BST(){ root = nullptr; }
     Node* getRoot(){ return root; }
-    void Insert(int key);
+    void iInsert(int key);
     void Inorder(Node* p);
-    Node* Search(int key);
+    Node* iSearch(int key);
+    Node* rInsert(Node* p, int key);
+    Node* rSearch(Node* p, int key);
+    Node* Delete(Node* p, int key);
+    int Height(Node* p);
+    Node* InPre(Node* p);
+    Node* InSucc(Node* p);
 };
 
 #endif
