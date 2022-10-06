@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -28,6 +29,8 @@ public:
     int Height(Node* p);
     Node* InPre(Node* p);
     Node* InSucc(Node* p);
+    void createFromPreorder(int pre[], int n);
 };
 
 #endif
+

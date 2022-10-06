@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 #include "bst_func.h"
 
 
@@ -157,3 +158,45 @@ Node* BST::InSucc(Node *p) {
     }
     return p;
 }
+
+void BST::createFromPreorder(int *pre, int n) {
+ 
+    // Create root node
+    int i = 0;
+    root = new Node;
+    root->data = pre[i++];
+    root->lchild = nullptr;
+    root->rchild = nullptr;
+ 
+    // Iterative steps
+    Node* t;
+    Node* p = root;
+    stack<Node*> stk;
+ 
+    while (i < n){
+        // Left child case
+        if (pre[i] < p->data){
+            t = new Node;
+            t->data = pre[i++];
+            t->lchild = nullptr;
+            t->rchild = nullptr;
+            p->lchild = t;
+            stk.push(p);
+            p = t;
+        } else {
+            // Right child cases
+            if (pre[i] > p->data && pre[i] < stk.empty() ? 32767 : stk.top()->data){
+                t = new Node;
+                t->data = pre[i++];
+                t->lchild = nullptr;
+                t->rchild = nullptr;
+                p->rchild = t;
+                p = t;
+            } else {
+                p = stk.top();
+                stk.pop();
+            }
+        }
+    }
+}
+
