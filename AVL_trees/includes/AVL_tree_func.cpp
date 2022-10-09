@@ -60,11 +60,47 @@ Node* AVL::RRRotation(Node *p) {
 }
  
 Node* AVL::LRRotation(Node *p) {
-    return nullptr;
+    Node* pl = p->lchild;
+    Node* plr = pl->rchild;
+ 
+    pl->rchild = plr->lchild;
+    p->lchild = plr->rchild;
+ 
+    plr->lchild = pl;
+    plr->rchild = p;
+ 
+    // Update height
+    pl->height = NodeHeight(pl);
+    p->height = NodeHeight(p);
+    plr->height = NodeHeight(plr);
+ 
+    // Update root
+    if (p == root){
+        root = plr;
+    }
+    return plr;
 }
  
 Node* AVL::RLRotation(Node *p) {
-    return nullptr;
+    Node* pr = p->rchild;
+    Node* prl = pr->lchild;
+ 
+    pr->lchild = prl->rchild;
+    p->rchild = prl->lchild;
+ 
+    prl->rchild = pr;
+    prl->lchild = p;
+ 
+    // Update height
+    pr->height = NodeHeight(pr);
+    p->height = NodeHeight(p);
+    prl->height = NodeHeight(prl);
+ 
+    // Update root
+    if (root == p){
+        root = prl;
+    }
+    return prl;
 }
  
 Node* AVL::rInsert(Node *p, int key) {
