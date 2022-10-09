@@ -8,23 +8,27 @@ using namespace std;
 
 int main() {
  
-    // LL Rotation
-    AVL tll;
-    tll.root = tll.rInsert(tll.root, 30);
-    tll.root = tll.rInsert(tll.root, 20);
-    tll.root = tll.rInsert(tll.root, 10);
+    // LR Rotation
+    AVL tlr;
+    tlr.root = tlr.rInsert(tlr.root, 50);
+    tlr.root = tlr.rInsert(tlr.root, 10);
+    tlr.root = tlr.rInsert(tlr.root, 20);
  
-    tll.Inorder();
+ 
+    tlr.Inorder();
     cout << endl;
+    cout << tlr.root->data << endl;
  
-    // RR Rotation
-    AVL trr;
-    trr.root = trr.rInsert(trr.root, 10);
-    trr.root = trr.rInsert(trr.root, 20);
-    trr.root = trr.rInsert(trr.root, 30);
+    // RL Rotation
+    AVL trl;
+    trl.root = trl.rInsert(trl.root, 20);
+    trl.root = trl.rInsert(trl.root, 50);
+    trl.root = trl.rInsert(trl.root, 30);
  
-    trr.Inorder();
+ 
+    trl.Inorder();
     cout << endl;
+    cout << trl.root->data << endl;
  
     return 0;
 }
