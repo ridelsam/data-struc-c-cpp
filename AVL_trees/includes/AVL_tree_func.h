@@ -27,6 +27,8 @@ public:
     Node* RRRotation(Node* p);
     Node* LRRotation(Node* p);
     Node* RLRotation(Node* p);
+    Node* InPre(Node* p);
+    Node* InSucc(Node* p);
  
     // Insert
     Node* rInsert(Node* p, int key);
@@ -35,6 +37,9 @@ public:
     void Inorder(Node* p);
     void Inorder(){ Inorder(root); }
     Node* getRoot(){ return root; }
+
+    // Delete
+    Node* Delete(Node* p, int key);
 };
 
 #endif

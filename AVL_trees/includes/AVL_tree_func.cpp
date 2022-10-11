@@ -144,3 +144,68 @@ void AVL::Inorder(Node *p) {
         Inorder(p->rchild);
     }
 }
+
+Node* AVL::InPre(Node *p) {
+    while (p && p->rchild != nullptr){
+        p = p->rchild;
+    }
+    return p;
+}
+ 
+Node* AVL::InSucc(Node *p) {
+    while (p && p->lchild != nullptr){
+        p = p->lchild;
+    }
+    return p;
+}
+
+Node* AVL::Delete(Node *p, int key) {
+    if (p == nullptr){
+        return nullptr;
+    }
+ 
+    if (p->lchild == nullptr && p->rchild == nullptr){
+        if (p == root){
+            root = nullptr;
+        }
+        delete p;
+        return nullptr;
+    }
+ 
+    if (key < p->data){
+        p->lchild = Delete(p->lchild, key);
+    } else if (key > p->data){
+        p->rchild = Delete(p->rchild, key);
+    } else {
+        Node* q;
+        if (NodeHeight(p->lchild) > NodeHeight(p->rchild)){
+            q = InPre(p->lchild);
+            p->data = q->data;
+            p->lchild = Delete(p->lchild, q->data);
+        } else {
+            q = InSucc(p->rchild);
+            p->data = q->data;
+            p->rchild = Delete(p->rchild, q->data);
+        }
+    }
+ 
+    // Update height
+    p->height = NodeHeight(p);
+ 
+    // Balance Factor and Rotation
+    if (BalanceFactor(p) == 2 && BalanceFactor(p->lchild) == 1) {  // L1 Rotation
+        return LLRotation(p);
+    } else if (BalanceFactor(p) == 2 && BalanceFactor(p->lchild) == -1){  // L-1 Rotation
+        return LRRotation(p);
+    } else if (BalanceFactor(p) == -2 && BalanceFactor(p->rchild) == -1){  // R-1 Rotation
+        return RRRotation(p);
+    } else if (BalanceFactor(p) == -2 && BalanceFactor(p->rchild) == 1){  // R1 Rotation
+        return RLRotation(p);
+    } else if (BalanceFactor(p) == 2 && BalanceFactor(p->lchild) == 0){  // L0 Rotation
+        return LLRotation(p);
+    } else if (BalanceFactor(p) == -2 && BalanceFactor(p->rchild) == 0){  // R0 Rotation
+        return RRRotation(p);
+    }
+ 
+    return p;
+}
