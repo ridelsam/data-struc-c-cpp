@@ -8,27 +8,20 @@ using namespace std;
 
 int main() {
  
-    // LR Rotation
-    AVL tlr;
-    tlr.root = tlr.rInsert(tlr.root, 50);
-    tlr.root = tlr.rInsert(tlr.root, 10);
-    tlr.root = tlr.rInsert(tlr.root, 20);
+    AVL tree;
  
+    int A[] = {10, 20, 30, 25, 28, 27, 5};
+    for (int i=0; i<sizeof(A)/sizeof(A[0]); i++){
+        tree.root = tree.rInsert(tree.root, A[i]);
+    }
  
-    tlr.Inorder();
+    tree.Inorder();
     cout << endl;
-    cout << tlr.root->data << endl;
  
-    // RL Rotation
-    AVL trl;
-    trl.root = trl.rInsert(trl.root, 20);
-    trl.root = trl.rInsert(trl.root, 50);
-    trl.root = trl.rInsert(trl.root, 30);
- 
- 
-    trl.Inorder();
+    tree.Delete(tree.root, 28);
+   
+    tree.Inorder();
     cout << endl;
-    cout << trl.root->data << endl;
  
     return 0;
 }
